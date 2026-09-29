@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conversación: Musicolet + YouTube en local (2026)</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1f2430;
+      --muted: #5a6472;
+      --accent: #2563eb;
+      --code-bg: #0f172a;
+      --code-text: #e2e8f0;
+      --border: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Segoe UI, Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    main {
+      max-width: 980px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1.8rem;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    h1 {
+      margin: 0 0 0.5rem;
+      font-size: 1.7rem;
+    }
+
+    h2 {
+      margin-top: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4rem;
+      font-size: 1.3rem;
+    }
+
+    h3 {
+      margin-top: 1.4rem;
+      font-size: 1.1rem;
+    }
+
+    p, li {
+      color: var(--text);
+    }
+
+    .meta {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .pill {
+      display: inline-block;
+      background: #eef2ff;
+      color: #1d4ed8;
+      border: 1px solid #c7d2fe;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      margin-right: 0.35rem;
+    }
+
+    pre {
+      background: var(--code-bg);
+      color: var(--code-text);
+      padding: 1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    p code,
+    li code,
+    td code {
+      background: #eef2ff;
+      color: #1e293b;
+      padding: 0.1rem 0.35rem;
+      border-radius: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--border);
+      padding: 0.55rem 0.7rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f8fafc;
+    }
+
+    .note {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+    }
+
+    .ok {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+    }
+  </style>
+</head>
+<body>
+<main class="card">
+  <h1>Conversación: Descargar YouTube en local para Musicolet</h1>
+  <div class="meta">
+    <span class="pill">Año: 2026</span>
+    <span class="pill">PC: Windows</span>
+    <span class="pill">Móvil: Android</span>
+    <span class="pill">App: Musicolet</span>
+  </div>
+
+  <section>
+    <h2>Resumen rápido</h2>
+    <ul>
+      <li>El método recomendado es usar <code>yt-dlp</code> en Windows.</li>
+      <li>Para convertir a MP3 conviene instalar también <code>ffmpeg</code>.</li>
+      <li>Después se copian los archivos al móvil, por ejemplo a <code>Music/YouTube</code>.</li>
+      <li>Musicolet debe escanear esa carpeta o añadirse manualmente.</li>
+      <li>El espacio que ocupan los programas es pequeño: menos de <strong>200–250 MB</strong>.</li>
+      <li>El espacio grande lo ocuparán los archivos descargados, no los programas.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>1. Pregunta inicial</h2>
+    <p>
+      Acabo de descargar mi nueva aplicación de música en mi móvil llamada Musicolet.
+      Quiero descargar videos de YouTube en local de forma gratis para meterlos en Musicolet.
+      También tengo un PC. ¿Cómo puedo conseguirlo actualmente en 2026?
+    </p>
+
+    <h3>Respuesta principal</h3>
+    <p>
+      Lo más sencillo y fiable en 2026 es usar tu PC para bajar el audio de YouTube
+      y luego pasarlo al móvil. Musicolet no descarga de Internet; solo reproduce archivos locales.
+      El flujo recomendado es:
+    </p>
+
+    <pre>
+YouTube → yt-dlp en PC → MP3/M4A → carpeta Música del móvil → Musicolet
+    </pre>
+
+    <h3>Instalar en Windows</h3>
+    <p>Instalar <code>yt-dlp</code>:</p>
+    <pre>
+winget install yt-dlp
+    </pre>
+
+    <p>Instalar <code>ffmpeg</code> si quieres MP3:</p>
+    <pre>
+winget install ffmpeg
+    </pre>
+
+    <h3>Descargar un vídeo como MP3</h3>
+    <p>
+      Primero crea una carpeta en tu PC, por ejemplo:
+    </p>
+    <pre>
+C:\Music\YouTube
+    </pre>
+
+    <p>Descarga el audio con este comando:</p>
+    <pre>
+yt-dlp -x --audio-format mp3 --audio-quality 0 --add-metadata -o "C:/Music/YouTube/%(uploader)s - %(title)s.%(ext)s" "URL_DEL_VIDEO"
+    </pre>
+
+    <p>Ejemplo:</p>
+    <pre>
+yt-dlp -x --audio-format mp3 --audio-quality 0 --add-metadata -o "C:/Music/YouTube/%(uploader)s - %(title)s.%(ext)s" "https://www.youtube.com/watch?v=ejemplo123"
+    </pre>
+
+    <h3>Explicación de los comandos</h3>
+    <ul>
+      <li><code>-x</code>: extraer solo el audio.</li>
+      <li><code>--audio-format mp3</code>: convertir a MP3.</li>
+      <li><code>--audio-quality 0</code>: máxima calidad; 0 es la mejor.</li>
+      <li><code>--add-metadata</code>: guarda metadatos si los encuentra.</li>
+      <li><code>-o</code>: define la carpeta y el nombre del archivo.</li>
+    </ul>
+
+    <h3>Si no quieres instalar ffmpeg</h3>
+    <p>Puedes bajar el audio original sin convertir:</p>
+    <pre>
+yt-dlp -f "bestaudio[ext=m4a]/bestaudio" -o "C:/Music/YouTube/%(uploader)s - %(title)s.%(ext)s" "URL_DEL_VIDEO"
+    </pre>
+
+    <p>
+      Esto prefiere M4A si está disponible. MP3 y M4A son los formatos más seguros para Musicolet.
+    </p>
+
+    <h3>Bajar una playlist completa</h3>
+    <pre>
+yt-dlp -x --audio-format mp3 --audio-quality 0 --add-metadata -o "C:/Music/YouTube/%(playlist_title)s/%(playlist_index)s - %(title)s.%(ext)s" "URL_DE_LA_PLAYLIST"
+    </pre>
+
+    <h3>Bajar un canal completo</h3>
+    <pre>
+yt-dlp -x --audio-format mp3 --audio-quality 0 --add-metadata -P "C:/Music/YouTube/%(channel)s" --flat-playlist -o "%(playlist_index)s - %(title)s.%(ext)s" "URL_DEL_CANAL"
+    </pre>
+
+    <h3>Pasar los archivos al móvil</h3>
+    <p>Opción con cable USB:</p>
+    <ol>
+      <li>Conecta el móvil Android al PC.</li>
+      <li>Copia la carpeta de música del PC al móvil.</li>
+      <li>Guárdalo en:</li>
+    </ol>
+    <pre>
+Almacenamiento interno/Music/YouTube
+    </pre>
+
+    <p>Opción sin cable:</p>
+    <ul>
+      <li>Usa <strong>LocalSend</strong> en PC y móvil.</li>
+      <li>Envía los MP3/M4A al móvil.</li>
+      <li>Guárdalos en <code>Music/YouTube</code>.</li>
+    </ul>
+
+    <h3>Hacer que Musicolet vea las canciones</h3>
+    <p>Abre Musicolet. Normalmente detecta las canciones solo. Si no:</p>
+    <ol>
+      <li>Ve al menú de Musicolet.</li>
+      <li>Busca <strong>Rescan</strong>, <strong>Actualizar biblioteca</strong> o similar.</li>
+      <li>Si no aparece, añade la carpeta manualmente, por ejemplo:</li>
+    </ol>
+    <pre>
+Music/YouTube
+    </pre>
+
+    <h3>Si Musicolet no encuentra nada</h3>
+    <ul>
+      <li>Comprueba que los archivos estén en una carpeta de música, por ejemplo <code>Music/YouTube</code>.</li>
+      <li>Usa formatos seguros: MP3, M4A, OGG/Opus o FLAC.</li>
+      <li>Vuelve a escanear la biblioteca en Musicolet.</li>
+      <li>Si los archivos son MP4, MKV o WebM, conviene convertirlos a MP3/M4A/OGG.</li>
+    </ul>
+
+    <h3>Alternativa con interfaz gráfica</h3>
+    <p>
+      Si no te gusta usar terminal, puedes usar <strong>Stacher</strong>. Es gratis, open source y usa <code>yt-dlp</code> por dentro.
+    </p>
+
+    <h3>Opción solo en el móvil</h3>
+    <p>
+      También existen apps como <strong>NewPipe</strong> o <strong>Seal</strong>, que permiten bajar audio de YouTube.
+      Después mueves el archivo a <code>Music/YouTube</code>. Pero si tienes PC, la ruta con <code>yt-dlp</code> es más cómoda.
+    </p>
+
+    <h3>Consejo importante para 2026</h3>
+    <p>
+      YouTube cambia seguido. Si <code>yt-dlp</code> deja de funcionar, actualízalo.
+    </p>
+    <pre>
+yt-dlp -U
+    </pre>
+
+    <p>Si YouTube pide iniciar sesión o muestra mensaje de “no eres un bot”, puedes usar cookies:</p>
+    <pre>
+yt-dlp --cookies-from-browser chrome -x --audio-format mp3 --audio-quality 0 "URL"
+    </pre>
+
+    <h3>Nota legal</h3>
+    <div class="note">
+      <p>
+        “Gratis” no siempre significa “legal”. YouTube normalmente dice que no descargues sus vídeos
+        salvo que tengas permiso, sea Creative Commons, sea vídeo tuyo o aplique uso justo según tu país.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. Pregunta sobre espacio en Windows</h2>
+    <p>
+      Mi PC es Windows. ¿Cuánto espacio ocupan esas dos cosas que me pides instalar?
+      Si es poco, lo meto en mi portátil; si es mucho, lo meto en mi PC torre.
+    </p>
+
+    <h3>Respuesta</h3>
+    <p>Es poco.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Programa</th>
+          <th>Espacio aproximado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>yt-dlp</code></td>
+          <td>10–30 MB</td>
+        </tr>
+        <tr>
+          <td><code>ffmpeg</code></td>
+          <td>100–150 MB</td>
+        </tr>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td><strong>Menos de 200–250 MB</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="ok">
+      <p>
+        <strong>Conclusión:</strong> si solo instalas esas dos herramientas,
+        <strong>mete todo en el portátil</strong> sin problema.
+      </p>
+      <p>
+        El espacio grande no lo ocupan los programas, sino los archivos que vayas descargando:
+        MP3, M4A, playlists completas, canales completos o vídeos.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Pregunta final</h2>
+    <p>
+      Para finalizar, créame un archivo de esta conversación para guardarlo en mi PC
+      y verlo en un futuro, usando la forma que sea más conveniente.
+    </p>
+
+    <h3>Respuesta</h3>
+    <p>
+      Este archivo está en <strong>HTML autocontenido</strong> porque es cómodo para PC:
+      se guarda como <code>.html</code> y se abre con doble clic en el navegador.
+    </p>
+
+    <p>Nombre recomendado:</p>
+    <pre>
+conversacion-musicolet-youtube.html
+    </pre>
+  </section>
+
+  <section>
+    <h2>Comando útil para empezar</h2>
+    <p>Si quieres el caso más simple, usa este comando en Windows:</p>
+    <pre>
+winget install yt-dlp
+winget install ffmpeg
+
+yt-dlp -x --audio-format mp3 --audio-quality 0 --add-metadata -o "C:/Music/YouTube/%(uploader)s - %(title)s.%(ext)s" "URL_DEL_VIDEO"
+    </pre>
+
+    <p>Luego copia la carpeta resultante al móvil:</p>
+    <pre>
+Móvil/Music/YouTube
+    </pre>
+
+    <p>Y en Musicolet, vuelve a escanear la biblioteca.</p>
+  </section>
+</main>
+</body>
+</html>
